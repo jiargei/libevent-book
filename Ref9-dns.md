@@ -676,6 +676,7 @@ Before Libevent 2.0.1-alpha, there was no separate notion of an evdns_base: all 
 The EVDNS_CONFIG_WINDOWS_NAMESERVERS_IMPLEMENTED macro is defined if and only if evdns_config_windows_nameservers() is available.
 
 // Move nameserver_add to dns_compat.h ?
+
 // Move the set_random_bytes function to dns_compat.h ?
 
 _Go back to [Index](README.md)_

@@ -217,7 +217,7 @@ int bufferevent_socket_get_dns_error(struct bufferevent *bev);
 
 This function resolves the DNS name 'hostname', looking for addresses of type 'family'.  (Allowable family types are AF_INET, AF_INET6, and AF_UNSPEC.)  If the name resolution fails, it invokes the event callback with an error event. If it succeeds, it launches a connection attempt just as bufferevent_connect would.
 
-The dns_base argument is optional.  If it is NULL, then Libevent blocks while waiting for the name lookup to finish, which usually isn't what you want.  If it is provided, then Libevent uses it to look up the hostname asynchronously. See link:Ref9_dns.html[chapter R9] for more info on DNS.
+The dns_base argument is optional.  If it is NULL, then Libevent blocks while waiting for the name lookup to finish, which usually isn't what you want.  If it is provided, then Libevent uses it to look up the hostname asynchronously. See [chapter R9](Ref9-dns.md) for more info on DNS.
 
 As with bufferevent_socket_connect(), this function tells Libevent that any existing socket on the bufferevent is not connected, and no reads or writes should be done on the socket until the resolve is finished and the connect operation has succeeded.
 

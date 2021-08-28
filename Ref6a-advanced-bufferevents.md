@@ -1,6 +1,6 @@
 # Bufferevents: advanced topics
 
-This chapter describes some advanced features of Libevent's bufferevent implementation that aren't necessary for typical uses.  If you're just learning how to use bufferevents, you should skip this chapter for now and go on to read link:Ref7_evbuffer.html[the evbuffer chapter].
+This chapter describes some advanced features of Libevent's bufferevent implementation that aren't necessary for typical uses.  If you're just learning how to use bufferevents, you should skip this chapter for now and go on to read l[the evbuffer chapter](Ref7-evbuffer.md).
 
 ## Paired bufferevents
 
