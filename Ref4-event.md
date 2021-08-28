@@ -783,3 +783,5 @@ There was also an event_once() function that played the role of event_base_once(
 The EV_PERSIST flag did not interoperate sensibly with timeouts before Libevent 2.0. Instead resetting the timeout whenever the event was activated, the EV_PERSIST flag did nothing with the timeout.
 
 Libevent versions before 2.0 did not support having multiple events inserted at the same time with the same fd and the same READ/WRITE. In other words, only one event at a time could be waiting for read on each fd, and only one event at a time could be waiting for write on each fd.
+
+_Go back to [Index](README.md)_
