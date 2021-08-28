@@ -1,15 +1,11 @@
-Fast portable non-blocking network programming with Libevent
-============================================================
+# Fast portable non-blocking network programming with Libevent
 
-Learning Libevent
------------------
+## Learning Libevent
 
-- link:00_about.html[Chapter 0: About this document]
-- link:01_intro.html[Chapter 1: A tiny introduction to asynchronous IO.]
+- [Chapter 0: About this document](Ref0-meta.md)
+- [Chapter 1: A tiny introduction to asynchronous IO.](Ref1-libsetup.md)
 
-
-A Libevent Reference Manual
----------------------------
+## Libevent Reference Manual
 
 - link:Ref0_meta.html[R0: Preliminaries]
 - link:Ref1_libsetup.html[R1: Setting up the Libevent library]
