@@ -1,7 +1,3 @@
-include::license.txt[]
-
-:language: C
-
 Evbuffers: utility functionality for buffered IO
 ------------------------------------------------
 
@@ -19,9 +15,9 @@ otherwise noted.
 Creating or freeing an evbuffer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evbuffer *evbuffer_new(void);
 void evbuffer_free(struct evbuffer *buf);
 --------
@@ -35,9 +31,9 @@ These functions have existed since Libevent 0.8.
 Evbuffers and Thread-safety
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_enable_locking(struct evbuffer *buf, void *lock);
 void evbuffer_lock(struct evbuffer *buf);
 void evbuffer_unlock(struct evbuffer *buf);
@@ -66,9 +62,9 @@ These functions were all introduced in Libevent 2.0.1-alpha.
 Inspecting an evbuffer
 ~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 size_t evbuffer_get_length(const struct evbuffer *buf);
 --------
 
@@ -76,9 +72,9 @@ This function returns the number of bytes stored in an evbuffer.
 
 It was introduced in Libevent 2.0.1-alpha.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 size_t evbuffer_get_contiguous_space(const struct evbuffer *buf);
 --------
 
@@ -92,18 +88,18 @@ It was introduced in Libevent 2.0.1-alpha.
 Adding data to an evbuffer: basics
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_add(struct evbuffer *buf, const void *data, size_t datlen);
 --------
 
 This function appends the 'datlen' bytes in 'data' to the end of
 'buf'.  It returns 0 on success, and -1 on failure.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_add_printf(struct evbuffer *buf, const char *fmt, ...)
 int evbuffer_add_vprintf(struct evbuffer *buf, const char *fmt, va_list ap);
 --------
@@ -113,9 +109,9 @@ argument and other remaining arguments are handled as if by the C
 library functions "printf" and "vprintf" respectively.  The functions
 return the number of bytes appended.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_expand(struct evbuffer *buf, size_t datlen);
 --------
 
@@ -145,9 +141,9 @@ Moving data from one evbuffer to another
 For efficiency, Libevent has optimized functions for moving data from
 one evbuffer to another.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_add_buffer(struct evbuffer *dst, struct evbuffer *src);
 int evbuffer_remove_buffer(struct evbuffer *src, struct evbuffer *dst,
     size_t datlen);
@@ -167,9 +163,9 @@ evbuffer_remove_buffer() was new in Libevent 2.0.1-alpha.
 Adding data to the front of an evbuffer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_prepend(struct evbuffer *buf, const void *data, size_t size);
 int evbuffer_prepend_buffer(struct evbuffer *dst, struct evbuffer* src);
 --------
@@ -189,9 +185,9 @@ front of an evbuffer, and see it as a contiguous array of bytes.  To
 do this, you must first ensure that the front of the buffer really _is_
 contiguous.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 unsigned char *evbuffer_pullup(struct evbuffer *buf, ev_ssize_t size);
 --------
 
@@ -206,9 +202,9 @@ byte in buf.
 Calling evbuffer_pullup() with a large size can be quite slow, since
 it potentially needs to copy the entire buffer's contents.
 
-.Example
-[code,C]
---------
+Example
+
+```c
 #include <event2/buffer.h>
 #include <event2/util.h>
 
@@ -254,9 +250,9 @@ regardless of the cost.
 Removing data from an evbuffer
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_drain(struct evbuffer *buf, size_t len);
 int evbuffer_remove(struct evbuffer *buf, void *data, size_t datlen);
 --------
@@ -283,9 +279,9 @@ of some kind has arrived, without draining any of the data (as
 evbuffer_remove would do), or rearranging the buffer internally (as
 evbuffer_pullup() would do.)
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 ev_ssize_t evbuffer_copyout(struct evbuffer *buf, void *data, size_t datlen);
 ev_ssize_t evbuffer_copyout_from(struct evbuffer *buf,
      const struct evbuffer_ptr *pos,
@@ -306,9 +302,9 @@ evbuffer" below for information on the evbuffer_ptr structure.
 
 If copying data from the buffer is too slow, use evbuffer_peek() instead.
 
-.Example
-[code,C]
---------
+Example
+
+```c
 #include <event2/buffer.h>
 #include <event2/util.h>
 #include <stdlib.h>
@@ -356,9 +352,9 @@ evbuffer_copyout_from() was added in Libevent 2.1.1-alpha.
 Line-oriented input
 ~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 enum evbuffer_eol_style {
         EVBUFFER_EOL_ANY,
         EVBUFFER_EOL_CRLF,
@@ -410,9 +406,9 @@ default malloc, the string returned by evbuffer_readln will be
 allocated by the malloc-replacement you specified.)
 
 //BUILD: FUNCTIONBODY INC:../example_stubs/Ref7.h
-.Example
-[code,C]
---------
+Example
+
+```c
 char *request_line;
 size_t len;
 
@@ -436,9 +432,9 @@ Searching within an evbuffer
 The evbuffer_ptr structure points to a location within an evbuffer,
 and contains data that you can use to iterate through an evbuffer.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evbuffer_ptr {
         ev_ssize_t pos;
         struct {
@@ -451,9 +447,9 @@ The 'pos' field is the only public field; the others should not be
 used by user code.  It indicates a position in the evbuffer as an
 offset from the start.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evbuffer_ptr evbuffer_search(struct evbuffer *buffer,
     const char *what, size_t len, const struct evbuffer_ptr *start);
 struct evbuffer_ptr evbuffer_search_range(struct evbuffer *buffer,
@@ -479,9 +475,9 @@ but instead of copying out the line, returns an evbuffer_ptr to the
 start of the end-of-line characters(s).  If eol_len_out is non-NULL, it is
 set to the length of the EOL string.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 enum evbuffer_ptr_how {
         EVBUFFER_PTR_SET,
         EVBUFFER_PTR_ADD
@@ -496,9 +492,9 @@ pointer is moved to an absolute position 'position' within the buffer.
 If it is EVBUFFER_PTR_ADD, the pointer moves 'position' bytes
 forward.  This function returns 0 on success and -1 on failure.
 
-.Example
-[code,C]
---------
+Example
+
+```c
 #include <event2/buffer.h>
 #include <string.h>
 
@@ -543,9 +539,9 @@ the middle of an evbuffer.
 
 You can do this with:
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evbuffer_iovec {
 	void *iov_base;
 	size_t iov_len;
@@ -666,9 +662,9 @@ this: evbuffer_reserve_space() and evbuffer_commit_space().
 As with evbuffer_peek(), these functions use the evbuffer_iovec
 structure to provide direct access to memory inside the evbuffer.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_reserve_space(struct evbuffer *buf, ev_ssize_t size,
     struct evbuffer_iovec *vec, int n_vecs);
 int evbuffer_commit_space(struct evbuffer *buf,
@@ -709,9 +705,9 @@ returns 0 on success and -1 on failure.
   unlock it once you commit.
 
 //BUILD: FUNCTIONBODY INC:../example_stubs/Ref7.h
-.Example
-[code,C]
---------
+Example
+
+```c
 /* Suppose we want to fill a buffer with 2048 bytes of output from a
    generate_data() function, without copying. */
 struct evbuffer_iovec v[2];
@@ -787,9 +783,9 @@ Network IO with evbuffers
 The most common use case for evbuffers in Libevent is network IO.
 The interface for performing network IO on an evbuffer is:
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_write(struct evbuffer *buffer, evutil_socket_t fd);
 int evbuffer_write_atmost(struct evbuffer *buffer, evutil_socket_t fd,
         ev_ssize_t howmuch);
@@ -831,9 +827,9 @@ Users of evbuffers frequently want to know when data is added to or
 removed from an evbuffer.  To support this, Libevent provides a
 generic evbuffer callback mechanism.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evbuffer_cb_info {
         size_t orig_size;
         size_t n_added;
@@ -852,9 +848,9 @@ there were on the buffer before its size changed; its n_added field
 records how many bytes were added to the buffer, and its n_deleted
 field records how many bytes were removed.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evbuffer_cb_entry;
 struct evbuffer_cb_entry *evbuffer_add_cb(struct evbuffer *buffer,
     evbuffer_cb_func cb, void *cbarg);
@@ -869,9 +865,9 @@ to the function.
 You can have multiple callbacks set on a single evbuffer.  Adding a
 new callback does not remove old callbacks.
 
-.Example
-[code,C]
---------
+Example
+
+```c
 #include <event2/buffer.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -915,9 +911,9 @@ If you don't want a callback to be permanently active on a buffer, you
 can _remove_ it (to make it gone for good), or disable it (to turn it
 off for a while):
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_remove_cb_entry(struct evbuffer *buffer,
     struct evbuffer_cb_entry *ent);
 int evbuffer_remove_cb(struct evbuffer *buffer, evbuffer_cb_func cb,
@@ -943,9 +939,9 @@ respectively.  Right now, only one user-visible flag is supported:
 cleared, modifications to the evbuffer do not cause this callback to
 get invoked.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_defer_callbacks(struct evbuffer *buffer, struct event_base *base);
 --------
 
@@ -975,9 +971,9 @@ Really fast network programming often calls for doing as few data
 copies as possible.  Libevent provides some mechanisms to help out
 with this.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 typedef void (*evbuffer_ref_cleanup_cb)(const void *data,
     size_t datalen, void *extra);
 
@@ -995,9 +991,9 @@ When the evbuffer no longer needs data, it will call the provided
 and "extra" pointer as arguments.
 This function returns 0 on success, -1 on failure.
 
-.Example
-[code,C]
---------
+Example
+
+```c
 #include <event2/buffer.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1057,9 +1053,9 @@ Some operating systems provide ways to write files to the network
 without ever copying the data to userspace.  You can access these
 mechanisms, where available, with the simple interface:
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_add_file(struct evbuffer *output, int fd, ev_off_t offset,
     size_t length);
 --------
@@ -1153,9 +1149,9 @@ When you no longer want to use a file segment, you can free it with
 evbuffer_file_segment_free().  The actual storage won't be released until no
 evbuffer any longer holds a reference to a piece of the file segment.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 typedef void (*evbuffer_file_segment_cleanup_cb)(
     struct evbuffer_file_segment const *seg, int flags, void *arg);
 
@@ -1204,9 +1200,9 @@ This function was introduced in Libevent 2.1.1-alpha.
 Making an evbuffer add- or remove-only
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evbuffer_freeze(struct evbuffer *buf, int at_front);
 int evbuffer_unfreeze(struct evbuffer *buf, int at_front);
 --------
@@ -1277,3 +1273,5 @@ and so adds and deletes were never batched into a single callback
 invocation.
 
 The obsolete functions here are still available in event2/buffer_compat.h.
+
+_Go back to [Index](README.md)_

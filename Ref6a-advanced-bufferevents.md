@@ -1,7 +1,3 @@
-include::license.txt[]
-
-:language: C
-
 Bufferevents: advanced topics
 -----------------------------
 
@@ -25,9 +21,9 @@ Instead, you can create a pair of _paired_ bufferevents such that all bytes
 written on one are received on the other (and vice versa), but no actual
 platform sockets are used.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int bufferevent_pair_new(struct event_base *base, int options,
     struct bufferevent *pair[2]);
 --------
@@ -55,9 +51,9 @@ generate an EOF event; it just makes the other member of the pair become
 unlinked.  Once the bufferevent is unlinked, it will no longer successfully
 read or write data or generate any events.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct bufferevent *bufferevent_pair_get_partner(struct bufferevent *bev)
 --------
 
@@ -77,9 +73,9 @@ Sometimes you want to transform all the data passing through a bufferevent
 object.  You could do this to add a compression layer, or wrap a protocol in
 another protocol for transport.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 enum bufferevent_filter_result {
 	BEV_OK = 0,
 	BEV_NEED_MORE = 1,
@@ -209,9 +205,9 @@ determines the smoothness of the traffic.
 Setting a rate limit on a bufferevent
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 #define EV_RATE_LIMIT_MAX EV_SSIZE_MAX
 struct ev_token_bucket_cfg;
 struct ev_token_bucket_cfg *ev_token_bucket_cfg_new(
@@ -252,9 +248,9 @@ Setting a rate limit on a group of bufferevents
 You can assign bufferevents to a 'rate limiting group' if you want to limit
 their total bandwidth usage.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct bufferevent_rate_limit_group;
 
 struct bufferevent_rate_limit_group *bufferevent_rate_limit_group_new(
@@ -296,9 +292,9 @@ Inspecting current rate-limit values
 Sometimes your code may want to inspect the current rate limits that apply
 for a given bufferevent or group.  Libevent provides some functions to do so.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 ev_ssize_t bufferevent_get_read_limit(struct bufferevent *bev);
 ev_ssize_t bufferevent_get_write_limit(struct bufferevent *bev);
 ev_ssize_t bufferevent_rate_limit_group_get_read_limit(
@@ -313,9 +309,9 @@ negative if a bufferevent has been forced to exceed its allocations.
 (Flushing the bufferevent can do this.)
 
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 ev_ssize_t bufferevent_get_max_to_read(struct bufferevent *bev);
 ev_ssize_t bufferevent_get_max_to_write(struct bufferevent *bev);
 --------
@@ -325,9 +321,9 @@ willing to read or write right now, taking into account any rate limits that
 apply to the bufferevent, its rate limiting group (if any), and any
 maximum-to-read/write-at-a-time values imposed by Libevent as a whole.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 void bufferevent_rate_limit_group_get_totals(
     struct bufferevent_rate_limit_group *grp,
     ev_uint64_t *total_read_out, ev_uint64_t *total_written_out);
@@ -351,9 +347,9 @@ For programs with really complex needs, you might want to adjust the current
 values of a token bucket.  You might want to do this, for example, if your
 program is generating traffic in some way that isn't via a bufferevent.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int bufferevent_decrement_read_limit(struct bufferevent *bev, ev_ssize_t decr);
 int bufferevent_decrement_write_limit(struct bufferevent *bev, ev_ssize_t decr);
 int bufferevent_rate_limit_group_decrement_read(
@@ -386,9 +382,9 @@ The default minimum share is chosen to give decent performance, and is
 currently (as of 2.0.6-rc) set to 64. You can adjust this value with the
 following function:
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int bufferevent_rate_limit_group_set_min_share(
 	struct bufferevent_rate_limit_group *group, size_t min_share);
 --------
@@ -451,9 +447,9 @@ These functions are all declared in the header "event2/bufferevent_ssl.h".
 Setting up and using an OpenSSL-based bufferevent
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 enum bufferevent_ssl_state {
 	BUFFEREVENT_SSL_OPEN = 0,
 	BUFFEREVENT_SSL_CONNECTING = 1,
@@ -511,9 +507,9 @@ breaks the TLS RFC, it will make sure that sessions will stay in
 cache once closed. The following code implements this workaround.
 
 //BUILD: SKIP
-.Example
-[code,C]
---------
+Example
+
+```c
 SSL *ctx = bufferevent_openssl_get_ssl(bev);
 
 /*
@@ -532,18 +528,18 @@ SSL_shutdown(ctx);
 bufferevent_free(bev);
 --------
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 SSL *bufferevent_openssl_get_ssl(struct bufferevent *bev);
 --------
 
 This function returns the SSL object used by an OpenSSL bufferevent, or NULL
 if 'bev' is not an OpenSSL-based bufferevent.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 unsigned long bufferevent_get_openssl_error(struct bufferevent *bev);
 --------
 
@@ -551,9 +547,9 @@ This function returns the first pending OpenSSL error for a given
 bufferevent's operations, or 0 if there was no pending error.  The error
 format is as returned by ERR_get_error() in the openssl library.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int bufferevent_ssl_renegotiate(struct bufferevent *bev);
 --------
 
@@ -602,3 +598,5 @@ this topic comes up enough to warrant discussion.
 --------
 include::examples_R6a/R6a_ssl_lock_init.c[]
 --------
+
+_Go back to [Index](README.md)_

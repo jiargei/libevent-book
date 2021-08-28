@@ -1,7 +1,3 @@
-include::license.txt[]
-
-:language: C
-
 Connection listeners: accepting TCP connections
 -----------------------------------------------
 
@@ -15,9 +11,9 @@ otherwise noted.
 Creating or freeing an evconnlistener
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 struct evconnlistener *evconnlistener_new(struct event_base *base,
     evconnlistener_cb cb, void *ptr, unsigned flags, int backlog,
     evutil_socket_t fd);
@@ -109,9 +105,9 @@ LEV_OPT_DEFERRED_ACCEPT::
 The connection listener callback
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 typedef void (*evconnlistener_cb)(struct evconnlistener *listener,
     evutil_socket_t sock, struct sockaddr *addr, int len, void *ptr);
 --------
@@ -127,9 +123,9 @@ was passed to evconnlistener_new().
 Enabling and disabling an evconnlistener
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evconnlistener_disable(struct evconnlistener *lev);
 int evconnlistener_enable(struct evconnlistener *lev);
 --------
@@ -139,9 +135,9 @@ These functions temporarily disable or reenable listening for new connections.
 Adjusting an evconnlistener's callback
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 void evconnlistener_set_cb(struct evconnlistener *lev,
     evconnlistener_cb cb, void *arg);
 --------
@@ -152,9 +148,9 @@ evconnlistener.  It was introduced in 2.0.9-rc.
 Inspecting an evconnlistener
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 evutil_socket_t evconnlistener_get_fd(struct evconnlistener *lev);
 struct event_base *evconnlistener_get_base(struct evconnlistener *lev);
 --------
@@ -171,9 +167,9 @@ You can set an error callback that gets informed whenever an accept() call
 fails on the listener.  This can be important to do if you're facing an error
 condition that would lock the process unless you addressed it.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 typedef void (*evconnlistener_errorcb)(struct evconnlistener *lis, void *ptr);
 void evconnlistener_set_error_cb(struct evconnlistener *lev,
     evconnlistener_errorcb errorcb);
@@ -190,8 +186,10 @@ Example code: an echo server.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 //BUILD: SKIP
-.Example
-[code,C]
---------
+Example
+
+```c
 include::examples_R8/R8_echo_server.c[]
---------
+```
+
+_Go back to [Index](README.md)_

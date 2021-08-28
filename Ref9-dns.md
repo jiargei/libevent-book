@@ -1,7 +1,3 @@
-include::license.txt[]
-
-:language: C
-
 Using DNS with Libevent: high and low-level functionality
 ---------------------------------------------------------
 
@@ -693,9 +689,9 @@ Suspending DNS client operations and changing nameservers
 Sometimes you want to reconfigure or shut down the DNS subsystem without
 affecting in-flight DNS request too much.
 
-.Interface
-[code,C]
---------
+Interface
+
+```c
 int evdns_base_clear_nameservers_and_suspend(struct evdns_base *base);
 int evdns_base_resume(struct evdns_base *base);
 --------
@@ -990,3 +986,5 @@ only if evdns_config_windows_nameservers() is available.
 
 // Move nameserver_add to dns_compat.h ?
 // Move the set_random_bytes function to dns_compat.h ?
+
+_Go back to [Index](README.md)_
