@@ -11,7 +11,7 @@
 - [R1: Setting up the Libevent library](Ref1-libsetup.md)
 - [R2: Getting an event_base](Ref2-eventbase.md)
 - [R3: Running an event loop](Ref3-eventloop.md)
-- link:Ref4_event.html[R4: Working with events]
+- [R4: Working with events](Ref4-event.md)
 - link:Ref5_evutil.html[R5: Utility and portability functions]
 - link:Ref6_bufferevent.html[R6: Bufferevents: concepts and basics]
 - link:Ref6a_advanced_bufferevents.html[R6a: Bufferevents: advanced topics]
