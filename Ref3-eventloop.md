@@ -238,3 +238,5 @@ Some of the event loop functions in this section had variants that operated on t
 | event_base_loopbreak()        | event_loopbreak() |
 
 NOTE: Because event\_base did not support locking before Libevent 2.0, these functions weren't completely threadsafe: it was not permissible to call the \_loopbreak() or \_loopexit() functions from a thread other than the one executing the event loop.
+
+_Go back to [Index](README.md)_

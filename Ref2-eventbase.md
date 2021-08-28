@@ -382,3 +382,5 @@ Some of the event_base functions in this section had variants that operated on t
 | --- | --- |
 | event_base_priority_init()    | event_priority_init() |
 | event_base_get_method()       | event_get_method() |
+
+_Go back to [Index](README.md)_

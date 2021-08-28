@@ -575,3 +575,5 @@ This function doesn't free any structures that were returned to you by a Libeven
 Calling libevent_global_shutdown() will make other Libevent functions behave unpredictably; don't call it except as the last Libevent function your program invokes. One exception is that libevent_global_shutdown() is idempotent: it is okay to call it even if it has already been called.
 
 This function is declared in <event2/event.h>. It was introduced in Libevent 2.1.1-alpha.
+
+_Go back to [Index](README.md)_
