@@ -12,7 +12,7 @@
 - [R2: Getting an event_base](Ref2-eventbase.md)
 - [R3: Running an event loop](Ref3-eventloop.md)
 - [R4: Working with events](Ref4-event.md)
-- link:Ref5_evutil.html[R5: Utility and portability functions]
+- [R5: Utility and portability functions](Ref5-evutil.md)
 - link:Ref6_bufferevent.html[R6: Bufferevents: concepts and basics]
 - link:Ref6a_advanced_bufferevents.html[R6a: Bufferevents: advanced topics]
 - link:Ref7_evbuffer.html[R7: Evbuffers: utility functionality for buffered IO]
