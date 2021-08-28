@@ -14,7 +14,7 @@
 - [R4: Working with events](Ref4-event.md)
 - [R5: Utility and portability functions](Ref5-evutil.md)
 - [R6: Bufferevents: concepts and basics](Ref6-bufferevent.md)
-- link:Ref6a_advanced_bufferevents.html[R6a: Bufferevents: advanced topics]
+- [R6a: Bufferevents: advanced topics](Ref6a-advanced-bufferevents.md)
 - link:Ref7_evbuffer.html[R7: Evbuffers: utility functionality for buffered IO]
 - link:Ref8_listener.html[R8: Connection listeners: accepting TCP connections]
 - link:Ref9_dns.html[R9: DNS for Libevent]
