@@ -2,13 +2,13 @@
 
 ## Learning Libevent
 
-- [Chapter 0: About this document](Ref0-meta.md)
-- [Chapter 1: A tiny introduction to asynchronous IO.](Ref1-libsetup.md)
+- [Chapter 0: About this document](RefA-about.md)
+- [Chapter 1: A tiny introduction to asynchronous IO.](RefB-intro.md)
 
 ## Libevent Reference Manual
 
-- link:Ref0_meta.html[R0: Preliminaries]
-- link:Ref1_libsetup.html[R1: Setting up the Libevent library]
+- [R0: Preliminaries](Ref0-meta.md)
+- [R1: Setting up the Libevent library](Ref1-libsetup.md)
 - link:Ref2_eventbase.html[R2: Getting an event_base]
 - link:Ref3_eventloop.html[R3: Running an event loop]
 - link:Ref4_event.html[R4: Working with events]
@@ -18,6 +18,3 @@
 - link:Ref7_evbuffer.html[R7: Evbuffers: utility functionality for buffered IO]
 - link:Ref8_listener.html[R8: Connection listeners: accepting TCP connections]
 - link:Ref9_dns.html[R9: DNS for Libevent]
-
-include::license.txt[]
-
