@@ -10,7 +10,7 @@
 - [R0: Preliminaries](Ref0-meta.md)
 - [R1: Setting up the Libevent library](Ref1-libsetup.md)
 - [R2: Getting an event_base](Ref2-eventbase.md)
-- link:Ref3_eventloop.html[R3: Running an event loop]
+- [R3: Running an event loop](Ref3-eventloop.md)
 - link:Ref4_event.html[R4: Working with events]
 - link:Ref5_evutil.html[R5: Utility and portability functions]
 - link:Ref6_bufferevent.html[R6: Bufferevents: concepts and basics]
